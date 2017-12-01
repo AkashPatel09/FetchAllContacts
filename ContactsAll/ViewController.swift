@@ -10,12 +10,17 @@ import UIKit
 import Contacts
 import ContactsUI
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var lblStatus: UILabel!
+    @IBOutlet var tableView: UITableView!
+    var arrayContacts = NSMutableArray()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,12 +75,35 @@ class ViewController: UIViewController {
             return results
         }()
         
-        for i in 0..<contacts.count {
+        if contacts.count > 0 {
+            
+            self.arrayContacts = NSMutableArray.init(array: contacts)
+            self.tableView.reloadData()
+            self.lblStatus.text = "Process Completed!"
+        }
+        
+        /*for i in 0..<contacts.count {
             
             //You can find all the contacts of your device and you can access them here
             self.lblStatus.text = "Process Completed!"
             print("\(contacts[i].familyName)\(contacts[i].givenName)\n\((contacts[i].phoneNumbers[0].value ).value(forKey: "digits") as! String)")
-        }
+        }*/
+    }
+    
+    
+    //MARK: TableView Datasource & Delegate
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (arrayContacts.count)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        let contactName = "\((arrayContacts[indexPath.row] as! CNContact).familyName)\((arrayContacts[indexPath.row] as! CNContact).givenName)"
+        cell.textLabel?.text = contactName
+        
+        return cell
     }
 
 }

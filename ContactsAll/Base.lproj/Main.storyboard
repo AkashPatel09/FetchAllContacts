@@ -19,30 +19,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3cO-G9-846">
-                                <rect key="frame" x="124" y="318.5" width="126" height="30"/>
+                                <rect key="frame" x="124" y="20" width="126" height="30"/>
                                 <state key="normal" title="Fetch All Contacts"/>
                                 <connections>
                                     <action selector="btnFetchAllContactsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MKd-qU-gvd"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZl-Ph-7Ft">
-                                <rect key="frame" x="162.5" y="368.5" width="49.5" height="21"/>
+                                <rect key="frame" x="162.5" y="70" width="49.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pZ2-Nu-4We">
+                                <rect key="frame" x="0.0" y="107" width="375" height="560"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="hPa-YL-Xdc"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="5Ce-Rl-Pbn"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="3cO-G9-846" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1lo-aB-Vhb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pZ2-Nu-4We" secondAttribute="bottom" id="3Vc-Ca-U7G"/>
                             <constraint firstItem="GZl-Ph-7Ft" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LEd-CP-jqn"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pZ2-Nu-4We" secondAttribute="trailing" id="LW0-wh-z5i"/>
                             <constraint firstItem="GZl-Ph-7Ft" firstAttribute="top" secondItem="3cO-G9-846" secondAttribute="bottom" constant="20" id="M5e-w8-AEf"/>
+                            <constraint firstItem="pZ2-Nu-4We" firstAttribute="top" secondItem="GZl-Ph-7Ft" secondAttribute="bottom" constant="16" id="Omm-e4-06K"/>
+                            <constraint firstItem="pZ2-Nu-4We" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Rf5-DF-FWI"/>
+                            <constraint firstItem="3cO-G9-846" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="cQY-HU-Rsu"/>
                             <constraint firstItem="3cO-G9-846" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hcj-68-RKc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="lblStatus" destination="GZl-Ph-7Ft" id="gcb-kR-NQd"/>
+                        <outlet property="tableView" destination="pZ2-Nu-4We" id="sRy-Bk-suY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
